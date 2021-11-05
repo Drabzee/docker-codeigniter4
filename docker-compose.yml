@@ -1,0 +1,19 @@
+version: "3"
+services:
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    volumes:
+      - ./app:/var/www/html/app
+      - ./public:/var/www/html/public
+      - ./tests:/var/www/html/tests
+      - ./writable:/var/www/html/writable
+      - ./.env:/var/www/html/.env
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
